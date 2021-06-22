@@ -21,17 +21,7 @@
     <div class="container ">
      
     
-   
-<!-- {{ places }} -->
-<!-- <h2>Hai {{ name }}</h2> -->
-<!-- <form action="your-url">
-    <label for="url">Website url</label>
-    <input type="url" name="url" value="https://" required><br>
-    <label for="code">short name</label>
-    <input type="text" name="code" value="hello world" required>
-    <input type="submit" name="shorten" value="shorten">
-</form> -->
-<input class="button" type="submit" name="submit_button" value="Export to excel">
+<input class="button" type="submit" name="submit_button" value="Export to CSV">
 <input class="button button2" type="submit" name="submit_button" value="Delete"><br>
 <br>
 <div class="form-check">
@@ -47,14 +37,15 @@
 <table id="customers">
     <thead>
         <th> Check/Uncheck </th>
+        
         {% for v in xlog[1] %}
             <th>{{ v }} </th>
         {% endfor %}
     </thead>
-    {% for k in range(0,6) %}
+    {% for k in range(0,len_xlog) %}
         <tbody>      
             <tr>
-                <td><input class="rowcheckbox" type="checkbox" id="{{ k }}" name="rowcheckbox" value="selectstate"></td>
+                <td><input class="rowcheckbox" type="checkbox" id="rowid_{{ k }}" name="rowcheckbox" value="selectstate"></td>
                 <td>{{ xlog[k]['States'] }}</td>
                 <td>{{ xlog[k]['Capital'] }}</td>
                 <td>{{ xlog[k]['Language'] }}</td>
@@ -66,9 +57,18 @@
   </table></div>
   </div>
 </body>
+<script>
+    var xloglen = '{{ len_xlog }}';
+    var arr =[];
+    for (let i = 0; i < xloglen; i++) {
+        arr.push(0);
+    }
+    // console.log(xloglen);
+    console.log(arr);
+    var xtx = document.getElementsByClassName("rowcheckbox")[4].id;
+    console.log(xtx);
 
-
-
+</script>
   <style>
   #customers {
   font-family: Arial, Helvetica, sans-serif;

@@ -20,7 +20,7 @@ def index():
       else:
         first_line = False
     
-  return render_template("home.html", xlog=places)
+  return render_template("home.html", xlog=places, len_xlog=len(places))
 @app.route('/')
 def projectexpo():
     return render_template('home.html', name='Nick')
