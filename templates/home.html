@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Just4fun</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="bg-secondary">
+    <nav class="navbar navbar-dark navbar-custom">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Just4fun</a>
+        </div>
+      </div>
+    </nav>
+      
+    <div class="container ">
+     
+    
+   
+<!-- {{ places }} -->
+<!-- <h2>Hai {{ name }}</h2> -->
+<!-- <form action="your-url">
+    <label for="url">Website url</label>
+    <input type="url" name="url" value="https://" required><br>
+    <label for="code">short name</label>
+    <input type="text" name="code" value="hello world" required>
+    <input type="submit" name="shorten" value="shorten">
+</form> -->
+<input class="button" type="submit" name="submit_button" value="Export to excel">
+<input class="button button2" type="submit" name="submit_button" value="Delete"><br>
+<br>
+<div class="form-check">
+<input class="form-check-input" type="radio" id="allselect" name="state1" value="all" checked>
+<label class="form-check-label" for="allselect"> All</label>
+<input class="form-check-input" type="radio" id="checked" name="state1" value="checked">
+<label class="form-check-label" for="checked"> Checked</label>
+<input class="form-check-input" type="radio" id="unchecked" name="state1" value="unchecked">
+<label class="form-check-label" for="unchecked"> Unchecked</label>
+</div>
+<!-- {{ xlog[1]['states'] }} -->
+
+<table id="customers">
+    <thead>
+        <th> Check/Uncheck </th>
+        {% for v in xlog[1] %}
+            <th>{{ v }} </th>
+        {% endfor %}
+    </thead>
+    {% for k in range(0,6) %}
+        <tbody>      
+            <tr>
+                <td><input class="rowcheckbox" type="checkbox" id="{{ k }}" name="rowcheckbox" value="selectstate"></td>
+                <td>{{ xlog[k]['States'] }}</td>
+                <td>{{ xlog[k]['Capital'] }}</td>
+                <td>{{ xlog[k]['Language'] }}</td>
+            </tr>
+        
+        </tbody>
+    {% endfor %}
+
+  </table></div>
+  </div>
+</body>
+
+
+
+  <style>
+  #customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  opacity: 0.6;
+  border-radius: 8px;
+}
+.button:hover {opacity: 1}
+.button2 {background-color: #008CBA;} /* Blue */
+.form-check-label{
+color: #003366;
+font-size: 16px;
+padding-right: 12px;
+}
+.navbar-custom {
+    background-color: rgb(9, 66, 119);
+}
+</style>
