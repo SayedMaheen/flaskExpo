@@ -25,18 +25,18 @@
 <input class="button button2" type="submit" name="submit_button" value="Delete"><br>
 <br>
 <div class="form-check">
-<input class="form-check-input" type="radio" id="allselect" name="state1" value="all" checked>
+<input class="form-check-input" type="radio" id="allselect" name="state1" value="all" checked onclick=ClickSelectRadio(this.value)>
 <label class="form-check-label" for="allselect"> All</label>
-<input class="form-check-input" type="radio" id="checked" name="state1" value="checked">
+<input class="form-check-input" type="radio" id="checked" name="state1" value="checked" onclick=ClickSelectRadio(this.value)>
 <label class="form-check-label" for="checked"> Checked</label>
-<input class="form-check-input" type="radio" id="unchecked" name="state1" value="unchecked">
+<input class="form-check-input" type="radio" id="unchecked" name="state1" value="unchecked" onclick=ClickSelectRadio(this.value)>
 <label class="form-check-label" for="unchecked"> Unchecked</label>
 </div>
 <!-- {{ xlog[1]['states'] }} -->
 
 <table id="customers">
     <thead>
-        <th> Check/Uncheck </th>
+        <th > Check/Uncheck </th>
         
         {% for v in xlog[1] %}
             <th>{{ v }} </th>
@@ -44,8 +44,8 @@
     </thead>
     {% for k in range(0,len_xlog) %}
         <tbody>      
-            <tr>
-                <td><input class="rowcheckbox" type="checkbox" id="rowid_{{ k }}" name="rowcheckbox" value="selectstate"></td>
+            <tr style="display:block" id="rowid_{{ k }}">
+                <td><input class="rowcheckbox" type="checkbox" id="checkboxid_{{ k }}" name="rowcheckbox" value="{{ k }}" onclick=ClickFunc(this.value)></td>
                 <td>{{ xlog[k]['States'] }}</td>
                 <td>{{ xlog[k]['Capital'] }}</td>
                 <td>{{ xlog[k]['Language'] }}</td>
@@ -64,10 +64,63 @@
         arr.push(0);
     }
     // console.log(xloglen);
-    console.log(arr);
-    var xtx = document.getElementsByClassName("rowcheckbox")[4].id;
-    console.log(xtx);
+    // console.log(arr);
+    // var xtx = document.getElementsByClassName("rowcheckbox")[4].id;
+    // console.log(xtx);
+    function ClickFunc(val) {
+        // Get the checkbox
+        var checkBox = val;
+        // console.log(checkBox);
+        // // If the checkbox is checked, alter the array corresponding value
+        if (arr[checkBox] == 0){
+            arr[checkBox] =1
+        } else if(arr[checkBox] == 1){
+            arr[checkBox] =0
+        }
+        else{
+            arr[checkBox] =0
+        }
+        // console.log(arr)
+    }
+    function ClickSelectRadio(nameofradio){
+        if (nameofradio == 'all'){
+            for(i=0;i<xloglen;i++){
+                var rowid = document.getElementById("rowid_"+i);
+                rowid.style.display = "block";
+                // console.log("rowid_"+i);
 
+            }
+            // arr[checkBox] =1
+        } else if(nameofradio == 'checked'){
+            for(i=0;i<xloglen;i++){
+                if(arr[i]==0){
+                    var rowid = document.getElementById("rowid_"+i);
+                    rowid.style.display = "none";
+                }
+                else if(arr[i]==1){
+                    var rowid = document.getElementById("rowid_"+i);
+                    rowid.style.display = "block";
+                }
+            }
+            // arr[checkBox] =0
+        }
+        else if(nameofradio == 'unchecked'){
+            for(i=0;i<xloglen;i++){
+                if(arr[i]==0){
+                    var rowid = document.getElementById("rowid_"+i);
+                    rowid.style.display = "block";
+                }
+                else if(arr[i]==1){
+                    var rowid = document.getElementById("rowid_"+i);
+                    rowid.style.display = "none";
+                }
+            }
+            // arr[checkBox] =0
+        }
+        else{
+
+        }
+    }
 </script>
   <style>
   #customers {
